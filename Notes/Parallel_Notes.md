@@ -35,6 +35,34 @@ Chrome: option, command, arrows.
 See preview of notes: command, shift, v
 
 ### C++
+To compile the code: gcc file_name.c -o desired_executable_name
+To execute the code: ./desired_executable_name
+
+Always include a main function. 
+Import libraries where necessary. 
+Example:
+/*Headers*/
+#include <stdio.h>
+
+/*forward declaration*/
+float area_of_square(float);
+
+/*main function*/
+int main() {return 0;}
+
+/*subroutine*/
+float area_of_square(float side){ return pow(side,2);}
+
+Pointers:
+int x = 43;
+int *pX = &x;  //pX is a variable of type: pointer to integer. It points to the location/address of x.
+int y = *pX     //y is a variable of type: integer. It stores the value pointed to by the pointer pX
+
+
+More general things:
+%d for int, %s for string. 
+Basic variables can be redefined, but not strings nor constants..
+An array automatically decays, in most cases, into a pointer to the first element. 
 
 
 ## Theory:
