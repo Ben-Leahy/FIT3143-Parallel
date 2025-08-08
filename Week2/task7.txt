@@ -1,0 +1,60 @@
+########################################################################
+Description
+########################################################################
+Assumptions: a word is a squence of 0 to * characters, surrounded by whitspace. 
+
+Function:
+Parse whitespaces
+Find next occurence of whitespace, set pointer to this
+Increment count
+Parse whitespaces
+Count = Count + function (recursive call)
+if pointer value is \0: return count
+
+
+
+########################################################################
+Sample code
+########################################################################
+
+#include <stdio.h>
+int count_words(char *text_string);
+
+int main()
+{
+    char *text_string = "This is  our file full of words, which we are counting";
+    int count = count_words(text_string);
+    printf("Count of words: " + count);
+    return (0);
+}
+
+int count_words(char *text_string)
+{
+    int count = 0;
+    // We could find the first occurence of a space, then parse however many whitespaces, then find the next occurence of the space. This assumes not random typos like " : "
+
+    text_string = parse_spaces(text_string);
+
+    /*Find first occurence of a space*/
+    char *p = strchr(text_string, ' ');
+    count++;
+
+    /* Parse 0-* spaces*/
+    text_string = parse_spaces(text_string);
+
+    /*Repeat*/
+    count = count + count_words(p);
+
+    /*A word is a sequence of 1 to 0 alphabetical characters, surrounded by a space or piece of punctuation*/
+    return (count);
+};
+
+int parse_spaces(char *text_string)
+{
+    /*This parses 0 to many spaces, then returns the remaining string*/
+    while (*text_string == ' ')
+    {
+        text_string++;
+    }
+    return text_string;
+}

@@ -5,6 +5,7 @@
 Workshops: week 4, week8, week12: quizzes: what to prepare is released a week before hand.
 Applieds: even weeks, the questions are released early
 Labs: odd weeks, the questions are released early.
+ASSESSED APPLIEDS AND LABS START WEEK 3!!
 
 AI is allowed, but not in presentations, demonstrations, and oral interviews
 
@@ -12,7 +13,6 @@ AI is allowed, but not in presentations, demonstrations, and oral interviews
 - data types, variables, operations, controls structures, functions, loops, arrays, I/O and most importantly pointers etc. would be helpful.
 
 ### General unit information:
-
 Lectures, workshops/applied/labs, quiz sessions
 The first applied and lab is not marked
 
@@ -55,7 +55,7 @@ float area_of_square(float side){ return pow(side,2);}
 
 Pointers:
 int x = 43;
-int *pX = &x;  //pX is a variable of type: pointer to integer. It points to the location/address of x.
+int *pX = &x; (or int *pX = &x)  //pX is a variable of type: pointer to integer. It points to the location/address of x.
 int y = *pX     //y is a variable of type: integer. It stores the value pointed to by the pointer pX
 
 
@@ -76,3 +76,14 @@ Speedup
 Efficiency
 
 General:
+
+
+SISD SIMD: we are talking about whether we enter the same information to multiple cores:
+ie for matrices, we have a function, and for each core we feed it a differetn input data of i and j. Which means that we get different output values. so that's MD. But SI because one function. So it's not about the positions in memory ie the number of bytes, (if we concatenated two strings it's a single output event hough it take smultiple bytes)
+
+Summary of FLynn's taxonomy:
+(SI = single function, MD = multiple instances of a function with different inputs)
+SISD: single function, single input parameters, single output, single core
+SIMD: single function, mutliple instance of function with different inputs, multipl outputs, multple cores
+MISD: multiple functions, single input, multiple outputs, multiple cores
+MIMD: multiple functions, multiple instances of function with different inputs, multiple outputs multiple cores
