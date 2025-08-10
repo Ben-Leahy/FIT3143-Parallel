@@ -1,15 +1,3 @@
-Context for Inter-Process Communications:
-- Consider, given the delay in the communication between processes, is it worth parallelising an algorithm into multiple processes. 
-
-
-Inter-Process Communication types:
-- Shared memory
-- Interrupts (unix signals and analogues)
-- Message passing (connection through internet) the following are types of message passing. 
-    - Streams -> BSD sockets but dividing the information into packets. 
-    - BSD sockets -> third party storage that both procresses can access
-    - Other exampels: multicase support
-
 Internet:
 - UDP: low overhead, packets of data may or may not arrive (streaming -. memory)
 - TCP: higher overhead, packets will arrive (eventually) in order

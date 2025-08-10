@@ -64,26 +64,3 @@ More general things:
 Basic variables can be redefined, but not strings nor constants..
 An array automatically decays, in most cases, into a pointer to the first element. 
 
-
-## Theory:
-One resource for it:
-https://ftp.utcluj.ro/pub/users/civan/CPD/3.RESURSE/9.Book_2018_Introduction%20to%20ParallelComputing_Trobek.pdf
-
-Chapter 2:
-Measuring performance:
-Parallel execution time
-Speedup
-Efficiency
-
-General:
-
-
-SISD SIMD: we are talking about whether we enter the same information to multiple cores:
-ie for matrices, we have a function, and for each core we feed it a differetn input data of i and j. Which means that we get different output values. so that's MD. But SI because one function. So it's not about the positions in memory ie the number of bytes, (if we concatenated two strings it's a single output event hough it take smultiple bytes)
-
-Summary of FLynn's taxonomy:
-(SI = single function, MD = multiple instances of a function with different inputs)
-SISD: single function, single input parameters, single output, single core
-SIMD: single function, mutliple instance of function with different inputs, multipl outputs, multple cores
-MISD: multiple functions, single input, multiple outputs, multiple cores
-MIMD: multiple functions, multiple instances of function with different inputs, multiple outputs multiple cores
