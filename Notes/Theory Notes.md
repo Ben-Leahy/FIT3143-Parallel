@@ -130,10 +130,12 @@ Stalls and resolution:
 
 ### Issues
 
-- **Data dependence:** Type of ILP. Think Data Hazard/ data dependency. Resolution: we can't forward because they are happening at the same time. Stall. They can't necessarily be avoided. Changing the compilation.
-- **Procedural dependence:** Type of ILP. Think conditional branch; what is the next instruction I should execute? Resolution: speculative execution; you can start executing both potential branches and store the outputs in cache until we pick a path. An issue with this is that we write the two possible paths in cache, but if we fill up cache then we need to write the result of the conditional in cache, we might run into a problem (shoul dbe low occuring instance because cache should have enough storage to wait out conditional calculation)
-- **Anti-dependency:** Type of ILP. This is when both instructions write (or one writes and one reads) to the same location, and so the order in which they write to memory matters.
-- **Resource Dependency:** If there are no other restrictions as described above, then we can execute more instructions than we have ALUs/EUs and so we are restricted by hardward.
+**Data dependence:** Type of ILP. Think Data Hazard/ data dependency. Resolution: we can't forward because they are happening at the same time. Stall. They can't necessarily be avoided. Changing the compilation.
+**Procedural dependence:** Type of ILP. Think conditional branch; what is the next instruction I should execute? 
+- Resolution: speculative execution; you can start executing both potential branches and store the outputs in cache until we pick a path. An issue with this is that we write the two possible paths in cache, but if we fill up cache then we need to write the result of the conditional in cache, we might run into a problem (shoul dbe low occuring instance because cache should have enough storage to wait out conditional calculation). 
+- Another technique is that we just calculate other unrelated things in the meantime. 
+**Anti-dependency:** Type of ILP. This is when both instructions write (or one writes and one reads) to the same location, and so the order in which they write to memory matters.
+**Resource Dependency:** If there are no other restrictions as described above, then we can execute more instructions than we have ALUs/EUs and so we are restricted by hardward.
 
 ## Question techniqes
 
