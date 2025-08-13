@@ -2,8 +2,15 @@
 
 **Parallel v distributed**  
 Parallel:
+TODO: 
+
+**Concurrency vs parallel**
+Concurrent processes: processes that make progress while others are active. 
+Parallel processes: processes that make progress during the same time step. 
 
 **CPU v GPU**
+CPU: a few powerful cores. Great for sequential work
+GPU: many simply cores, great for parellel tasks
 
 **CPU v ALU v core**
 CPU: that's your computer, may contain 1 to many cores
@@ -15,6 +22,8 @@ Time phase: the time taken for the computer architecture to do one thing (think 
 Throughput: the number of instructions per time phase.
 Latency: the length of time for a single instruction to complete its execution cycle (ie 5 x len(time phase))
 Efficiency: throughput.
+
+**Cluster** -> connecting computers together in a network. 
 
 ## Flynn's Taxonomy
 
@@ -35,42 +44,18 @@ Efficiency: throughput.
  **Example:** most things; multiple core cpu, super computer, networked computers.
 
 ## Memory Architecture:
-
+Memory architecture is separate to Flynn's taxonomy. It's about classifying the interaction of data between processors. 
 **Shared memory architecture**
+Multiple processors connected by a bus or switch. Ie multi-core CPU Results in threads.    
 
 **Distributed memory architecture**
+Multiple processors connected by a network (bus switch or internet).   
+
 **Hybrid memory architecture**
-
-## Parallel Pramming models
-
-A. Shared Memory
-B. Threads
-C. Message Passing
-D. Data Parallel
-E. Hybrid
-
-SPMD
-MPMD
-
-## Network and internet
-
-Internet architecture, latency
-
-## Inter process communications
-
-**Context**  
-Consider the delay when communicating between processors, is it worth parallelising a task between them?
-
-**Shared Memory**  
-**Unix Signals and analogues (interrupts)**  
-**Message Passing**
-
-- BSD sockets -> third party storage that multiple processors can access
-- Streams -> third party storage that multiple processors can access, and that information streams in; it's divided into a series of packets.
-- etc
+A mix of shared memory architecture and distributed memory architecture. 
 
 ## Computer Architecture
-
+TODO: this section.  
 The TLB maps between addresses and virtual addresses.
 See diagram of architecture
 
@@ -82,9 +67,65 @@ See diagram of architecture
 4. ALU operation
 5. Store ALU output in register
 
-### Process
+## Parallel models
+TODO: what is the context for this??
+A. Shared Memory
+B. Threads
+C. Message Passing
+D. Data Parallel
+E. Hybrid
+SPMD
+MPMD
 
-### Internet
+streams, GPUs
+SMP Symmetrical Multi-Processing Machine -> all cores can run operating system and slave tasks. 
+
+## Network and internet
+TODO: do this section.  
+Internet architecture, latency
+
+
+## Inter process communications
+
+**Context**  
+For processors to work together, they need to communicate. Consider the delay when communicating between processors, is it worth parallelising a task between them?
+
+Main types of IPC:
+- Shared memory
+- Unix signals and analogues
+- Message Passing
+
+### Shared Memory
+Processes can access a single, physical, shared memory. 
+- Parallel Random Access Machine (PRAM)
+    - This assumes constant time access to memory which is unrealistic: it's a hypothetical model. 
+    - EREW (Exclusive Read Exclusive Write) → slower
+    - CREW (Concurrent Read Exclusive Write) → read the value before or after change?
+    - CRCW (Concurrent Read Concurrent Write) → who writes first?
+- Local Memory Machine (LMM)
+    - Each processor has its own private memory. Processors can also access each other's memory, but this is slower than accessing their own. 
+- Modular Memory Machine (MMM)
+    - Memory is physically distributed, and connected by a network. 
+    - Memory is accessed as if in one address space. 
+
+### Unix Signals and analogues 
+Ie, there are interrupts
+TODO: is there anything else I need to know?
+
+### Message Passing
+TODO: I can't figure out how these pieces fit together
+Keyterms: MPI, BSD sockets, SVR4 streams, Message Passing
+Message passing is for communicating between processes which don't share memory. Ie sharing information accross a network -> if this is accross internet use IDP/UDP.  
+**Message Passing Interface (MPI):** a higher level library and standard for message passing.
+
+**BSD sockets**
+- A specific implementation of a socket 
+- (A socket is an endpoint including an IP address, a port, and an API for communication). 
+- third party storage that multiple processors can access    
+
+**SVR4 Streams**
+- Information streams through; it's divided into packets and sends continuously. 
+
 
 ## Pipelining
 
