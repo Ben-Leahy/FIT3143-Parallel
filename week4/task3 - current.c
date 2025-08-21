@@ -8,10 +8,6 @@
 int is_prime(int num)
 /*Returns 1 if the number is a prime, and 0 if the number is not a prime*/
 {
-    if (num < 2) return 0;
-    if (num == 2) return 1;
-    if (num % 2 == 0) return 0;
-
     int limit = (int)sqrt(num);
     for (int i = 3; i <= limit; i += 2)
     {
@@ -33,12 +29,21 @@ int main()
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start); // store the time into start
 
-    // allocate array to mark primes -> dynamically
+    // allocate n bytes worth of memory to mark numbers as prime or not prime. Starts at 1
     int *primes = malloc((n + 1) * sizeof(int));
+
+    // Handle small cases to allow us to skip even numbers
+    if (num < 2)
+        return 0;
+    if (num == 2)
+    {
+        return printf("%d", 2);
+    }
+    primes[2] = 1; // if we haven't already ended, we need to include 2
 
 // parallel loop: mark primes
 #pragma omp parallel for schedule(dynamic)
-    for (int i = 2; i <= n; i++)
+    for (int i = 3; i <= n; i += 2)
     {
         if (is_prime(i))
         {
@@ -49,7 +54,7 @@ int main()
             primes[i] = 0;
         }
     }
-// End parallel part
+    // End parallel part
 
     FILE *pFile = fopen("primes.txt", "w");
 
@@ -57,10 +62,12 @@ int main()
     {
         if (primes[i])
         {
-            if (n < largeN){
+            if (n < largeN)
+            {
                 printf("%d\n", i);
             }
-            else {
+            else
+            {
                 fprintf(pFile, "%d\n", i);
             }
         }
