@@ -26,13 +26,16 @@ docker stop ee88b4633823f432b8fae30dd11828f14bb4f80ab066365b7d044ac737b733dd
 To start docker:
 docker start ee88b4633823f432b8fae30dd11828f14bb4f80ab066365b7d044ac737b733dd
 
-Then run:
+Then run (to go into the docker terminal):
 docker exec -it ee88b4 bash
 
 ### Shortcuts
 
 Chrome: option, command, arrows.
 See preview of notes: command, shift, v
+
+### Error fixing
+All of the errors I have had so far can be fixed by typing the compiling command again rather than clikcing up arrow and I do not know why. 
 
 ### C++
 To compile the code: gcc file_name.c -o desired_executable_name
@@ -54,13 +57,21 @@ int main() {return 0;}
 float area_of_square(float side){ return pow(side,2);}
 
 Pointers:
+char * var-> pointer to a char
+&var -> the address of var
+*pVar -> value pointed to by pVar 
+
 int x = 43;
-int *pX = &x; (or int *pX = &x)  //pX is a variable of type: pointer to integer. It points to the location/address of x.
+int *pX = &x; (or int* pX = &x)  //pX is a variable of type: pointer to integer. It points to the location/address of x.
 int y = *pX     //y is a variable of type: integer. It stores the value pointed to by the pointer pX
 
 
 More general things:
-%d for int, %s for string. 
+%d for int, %s for string, %lf for double scanning, %f for double printing, %c char
 Basic variables can be redefined, but not strings nor constants..
 An array automatically decays, in most cases, into a pointer to the first element. 
+printf prints, scanf scans for multiple simple types but stops after a space, 
 
+With files:
+fprintf just prints what's inside like printf, except with the pointer to the file also as an input
+fscanf(pointer to file, "pattern we are matching like text %d", address of variables matched in pattern) 

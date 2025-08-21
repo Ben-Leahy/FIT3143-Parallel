@@ -184,3 +184,28 @@ Stalls and resolution:
 - We assume that there are no extra headers unless specified.
 
 # TODO / to ask
+
+
+# TO Sort:
+### These are notes on Posix threads. 
+Basics are pthread_create(pointer to pthread_t var, attributes/NULL, function, function's inputs) 
+and pthread_join(pthread_t variable, work with return value)
+
+int my_function();
+int main()
+{
+pthread_t thread1;
+pthread_create(&thread1, NULL, my_function, NULL);
+pthread_join(thread1, NULL);
+}
+int my_function(){return 0;}
+
+There are heavyweight processes and lightweight processes (threads). Threads share memory space and global variables which reduces overhead of creating new processes. 
+
+multiplexing -> multitasking
+there is a POSIX thread API
+- all threads are peers apart from main thread
+- #include <pthread.h>
+- 
+
+NOTE: I AM WORKING 
