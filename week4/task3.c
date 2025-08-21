@@ -33,9 +33,9 @@ int main()
     int *primes = malloc((n + 1) * sizeof(int));
 
     // Handle small cases to allow us to skip even numbers
-    if (num < 2)
+    if (n < 2)
         return 0;
-    if (num == 2)
+    if (n == 2)
     {
         return printf("%d", 2);
     }
