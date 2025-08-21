@@ -42,6 +42,7 @@ int main() {
             display(i, n, pFile);
         }
     }
+    fclose(pFile);
 
     return 0;
 }
