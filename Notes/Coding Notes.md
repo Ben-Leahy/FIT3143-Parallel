@@ -36,6 +36,8 @@ See preview of notes: command, shift, v
 
 ### Error fixing
 All of the errors I have had so far can be fixed by typing the compiling command again rather than clikcing up arrow and I do not know why. 
+Try waiitng longer before up arrow and enter. Try deleting hidden backspaces. Try running   `history | tail -n 5 | cat -A
+` afterwards. 
 
 ### C++
 To compile the code: gcc file_name.c -o desired_executable_name
