@@ -18,10 +18,10 @@ int is_prime(int num) {
 void display (int i, int n, FILE * pFile){
     /* Display i in terminal for low n, and in pFile for large n*/
     if (n < 1000){
-        printf("%d ", i);
+        printf("%d\n", i);
     }
     else {
-        fprintf(pFile, "%d ", i);
+        fprintf(pFile, "%d\n", i);
     }
 }
 
