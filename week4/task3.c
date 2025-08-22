@@ -4,6 +4,8 @@
 #include <time.h>
 #include <omp.h>
 
+// 0.6375 seconds
+
 // check primality
 int is_prime(int num)
 /*Returns 1 if the number is a prime, and 0 if the number is not a prime*/
@@ -35,11 +37,7 @@ int main()
     // Handle small cases to allow us to skip even numbers
     if (n < 2)
         return 0;
-    if (n == 2)
-    {
-        return printf("%d", 2);
-    }
-    primes[2] = 1; // if we haven't already ended, we need to include 2
+    primes[2] = 1; // include prime 2 so we can skip all other evens
 
 // parallel loop: mark primes
 #pragma omp parallel for schedule(dynamic)
@@ -56,9 +54,12 @@ int main()
     }
     // End parallel part
 
-    FILE *pFile = fopen("primes.txt", "w");
+    FILE *pFile = fopen("primes3.txt", "w");
 
-    for (int i = 2; i <= n; i++)
+    // Print prime 2
+    (n < largeN) ? printf("%d\n", 2) : fprintf(pFile, "%d\n", 2); // Finish accounting for the only even prime
+
+    for (int i = 3; i <= n; i += 2)
     {
         if (primes[i])
         {
@@ -83,3 +84,7 @@ int main()
 
     return 0;
 }
+
+// Time task 1: 2.4313 seconds
+// Time task 2: 0.7926 seconds (6 threads)
+// Time task 3: 0.6375 seconds (6 threads)
