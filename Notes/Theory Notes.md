@@ -209,3 +209,69 @@ there is a POSIX thread API
 - 
 
 NOTE: I AM WORKING 
+
+
+MIMD
+Distributed memory MIMD: 
+- processors connected via a network, own processor and private memory
+- Advantages: scalable, less chance of reading and writing into the same memory location
+- Disadvantages: Load balancing, synchronosation failures (deadlocks), entire structures might need to be copied along the network. 
+
+Non-uniform memory access distributed memory:
+Each processor has a processor and a local memory, and they are connected by a memory. 
+Non-uniform memory access becuase access to local memory is high throughput low latency, but through memory belonging to another processor has a lower latency and lower bandwidth. 
+
+Cache-corent non-uniform memory access distributed memory:
+Each processor has its own cache and own memory. The caches all store the same information and need to be kept in sync
+
+Cache only memory access
+Each process only has it's own cache.
+
+Shared memory MIMD:
+- Processors connected (often by bus or switch -> physicall hardware), p processors and m memory modules which are all shared. 
+- Advantages: No need to move data, don't need new compilers 
+- Disadvantages: you are resonsible for synchronosation. 
+- Techniques: Local caches reduce network traffic and access time (but then cache coherency problem), we can increase throughput and decrease latency. 
+
+Scaling computers:
+Latency -> delay due to transferring data across network. 
+    -> introduce cache memory & solve cache coherence problem
+    -> prefetching 
+    -> threads and fast context switchin so that we execute another thread while we are waiting. (Context switchin within a process is lesser than accross multiple processes. )
+Idling -> processor is waiting for data
+
+Distributed memory MIMD
+Level of processes, not threads. 
+
+Interconnection networks to join cores over a distributed memory system
+- Network size (number of nodes or cores)
+- Number of connections per node
+- network diameter (maximum length between one node and another)
+- Bisection width (number of links required to be broken to split the network into two pieces) (we want this high for high reliability)
+- Arc connectivity (same as bisection but for arcs (what are arcs))
+- Cost (proportional to teh number of links and routers needed in the network. )
+![alt text](image.png)
+
+Switching techniques:
+- Estimate of latency = (packet length * num nodes info travels through)/channel bandwidth = num_packets*num_nodes
+If we determine the path beforehand, then keep that path reserved for this information, then it's
+- Estimate of latency = two things added together tcheck clidews
+
+Basically we need to know that the length of the packet, and the number of nodes the information travels through decreases our throughput. 
+
+Circuit switching: latency formula here too. So we create a pathway through, then send everything through, then clear the path. 
+We can route dynamically or deterministically. Dynamic routing can not use the shortest path in terms of the number of nodes, but get a shorter total latency by using routers which have less traffic. 
+
+
+# Cluster:
+set of distributed computers connected in a network. 
+
+### HPC vs HTC
+High performance: a single program is run as quickly as possible
+High-throughput: many independent programs are run as quickly as possible. 
+
+### CAAS: Cluster as a service
+Monash has one, use a vpn. 
+**SSH** is like having a terminal for a remote virtual machine. 
+Don't run your code directly, request a run throguh SLURM. ie sbatch yourJob.job, then squeue to check progress. 
+If you accidentally run on the head node instead of through the SLURM scheduling software, start with cnrlc, then ps to see what is running, and use kill command to manually kill them. 
